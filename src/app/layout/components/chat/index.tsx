@@ -17,14 +17,24 @@ class Chat extends React.Component<Props, State> {
     this.state = {};
   }
 
+  componentDidMount() {
+    const launcher: any = document.getElementById("launcher")
+    launcher.contentDocument.getElementsByTagName("button")[0].click()
+  }
+
+  onClickBack() {
+    // const launcher: any = document.getElementById("launcher")
+    // launcher.style.visibility = 'hidden'
+    document.getElementsByClassName("chat-3hDPX")[0].getElementsByTagName("button")[1].click()
+  }
+
   render() {
     return (
       <GridContainer className="page-cornucopia-chat">
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
-        <BackButton history={this.props.history} />
+        <BackButton history={this.props.history}/>
         <Body>
           <GridItem className="dummy-div" xs={12}>
-            Page - CHAT
           </GridItem>
         </Body>
       </GridContainer>

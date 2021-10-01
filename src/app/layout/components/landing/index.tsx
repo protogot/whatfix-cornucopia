@@ -59,6 +59,12 @@ class Landing extends React.Component<Props, State> {
     };
   }
 
+  public componentDidMount () {
+    const launcher: any = document.getElementById("launcher")
+    if(launcher) 
+      launcher.style.visibility = 'hidden'
+  }
+
   public handleTabRedirect(tabInfo: Tab){
     this.props.history.push(tabInfo.URL);
   }

@@ -1,5 +1,5 @@
 {
-  "LANDING_ROUTE": "/",
+  "LANDING": "/",
   "TASKLIST": "/tasklist",
   "CHAT": "/chat",
   "SELF_HELP": "/selfhelp",

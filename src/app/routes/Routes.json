@@ -1,4 +1,5 @@
 {
   "LANDING_ROUTE": "/",
-  "DASHBOARD_ROUTE": "/home"
+  "DASHBOARD_ROUTE": "/home",
+  "SELF_HELP": "/self-help"
 }

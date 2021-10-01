@@ -12,9 +12,10 @@ export default function Router() {
       <BrowserRouter>
         <Switch>
           <Route path={Routes.LANDING_ROUTE} component={Planner} exact />
-          <Route path={Routes.LANDING_ROUTE} component={()=><React.Fragment></React.Fragment>} exact />
-          <Route path={Routes.LANDING_ROUTE} component={()=><React.Fragment></React.Fragment>} exact />
-          <Route path={Routes.LANDING_ROUTE} component={()=><React.Fragment></React.Fragment>} exact />
+          <Route path={Routes.CHAT} component={()=><React.Fragment></React.Fragment>} exact />
+          <Route path={Routes.SELF_HELP} component={()=><React.Fragment></React.Fragment>} exact />
+          <Route path={Routes.SUPPORT} component={()=><React.Fragment></React.Fragment>} exact />
+          <Route path={Routes.TASKLIST} component={()=><React.Fragment></React.Fragment>} exact />
         </Switch>
       </BrowserRouter>
     </AppContainer>

@@ -7,8 +7,8 @@ interface ContainerProps {
 }
 interface ContainerState {}
 
-class GridContainer extends React.Component<ContainerProps, ContainerState> {
-  constructor(props: ContainerProps) {
+class GridContainer extends React.Component<any, ContainerState> {
+  constructor(props: any) {
     super(props);
     this.state = {};
   }
@@ -35,8 +35,8 @@ interface ItemProps {
 }
 interface ItemState {}
 
-class GridItem extends React.Component<ItemProps, ItemState> {
-  constructor(props: ItemProps) {
+class GridItem extends React.Component<any, ItemState> {
+  constructor(props: any) {
     super(props);
     this.state = {};
   }

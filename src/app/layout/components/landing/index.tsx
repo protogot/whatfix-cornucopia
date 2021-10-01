@@ -5,11 +5,16 @@ import "./index.scss";
 import Body from "layout/common/Body/Body";
 
 import Routes from "../../../routes/Routes.json";
+import BackButton from "layout/common/BackButton";
 
-type Props = {};
+type Props = {
+  history?: any;
+};
+
 type State = {
   tabs: Array<Tab>
 };
+
 type Tab = {
   URL: string;
   active: boolean;
@@ -50,12 +55,12 @@ class Landing extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      tabs: {...defaultTabsConfig}
+      tabs: [...defaultTabsConfig]
     };
   }
 
   public handleTabRedirect(tabInfo: Tab){
-    console.log("Tab Clicked", tabInfo);
+    this.props.history.push(tabInfo.URL);
   }
 
   public render() {
@@ -66,7 +71,7 @@ class Landing extends React.Component<Props, State> {
           <GridContainer className="tabs-list">
             {
               this.state.tabs.map((tab: Tab) => (
-                <GridItem xs={12} onClick={() => this.handleTabRedirect(tab)}>{tab.label}</GridItem>
+                <GridItem className="tab-item" xs={12} onClick={() => this.handleTabRedirect(tab)}>{tab.label}</GridItem>
               ))
             }
           </GridContainer>

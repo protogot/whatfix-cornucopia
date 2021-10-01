@@ -3,8 +3,12 @@ import { GridContainer, GridItem } from "layout/common/Grid/GridContainer";
 
 import "./index.scss";
 import Body from "layout/common/Body/Body";
+import BackButton from "layout/common/BackButton";
 
-type Props = {};
+type Props = {
+  history?: any;
+};
+
 type State = {};
 
 class SelfHelp extends React.Component<Props, State> {
@@ -17,6 +21,7 @@ class SelfHelp extends React.Component<Props, State> {
     return (
       <GridContainer className="page-cornucopia-self-help">
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
+        <BackButton history={this.props.history} />
         <Body>
           <GridItem className="dummy-div" xs={12}>
             Page - SelfHelp

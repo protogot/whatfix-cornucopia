@@ -11,7 +11,7 @@ type Props = {
 
 type State = {};
 
-class SelfHelp extends React.Component<Props, State> {
+class Chat extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {};
@@ -19,12 +19,12 @@ class SelfHelp extends React.Component<Props, State> {
 
   render() {
     return (
-      <GridContainer className="page-cornucopia-self-help">
+      <GridContainer className="page-cornucopia-chat">
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
         <BackButton history={this.props.history} />
         <Body>
           <GridItem className="dummy-div" xs={12}>
-            Page - SelfHelp
+            Page - CHAT
           </GridItem>
         </Body>
       </GridContainer>
@@ -32,4 +32,4 @@ class SelfHelp extends React.Component<Props, State> {
   }
 }
 
-export default SelfHelp;
+export default Chat;

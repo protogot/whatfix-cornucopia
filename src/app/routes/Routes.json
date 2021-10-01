@@ -1,5 +1,7 @@
 {
-  "LANDING_ROUTE": "/",
-  "DASHBOARD_ROUTE": "/home",
-  "SELF_HELP": "/self-help"
+  "LANDING": "/",
+  "TASKLIST": "/tasklist",
+  "CHAT": "/chat",
+  "SELF_HELP": "/selfhelp",
+  "SUPPORT": "/support"
 }

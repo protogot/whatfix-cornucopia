@@ -1,21 +1,26 @@
 import React from "react";
 
 import AppContainer from "./../layout/common/AppContainer/AppContainer";
-import Planner from "layout/components/planner";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import Routes from "./Routes.json";
+import Landing from "layout/components/landing";
+import Chat from "layout/components/chat";
 import SelfHelp from "layout/components/self-help";
+import Support from "layout/components/support";
+import TaskList from "layout/components/task-list";
 
 export default function Router() {
   return (
     <AppContainer>
       <BrowserRouter>
         <Switch>
-          <Route path={Routes.LANDING_ROUTE} component={SelfHelp} exact />
+          <Route path={Routes.LANDING} component={Landing} exact />
+          <Route path={Routes.CHAT} component={Chat} exact />
           <Route path={Routes.SELF_HELP} component={SelfHelp} exact />
-          {/* <Route path={Routes.LANDING_ROUTE} component={()=><React.Fragment></React.Fragment>} exact />
-          <Route path={Routes.LANDING_ROUTE} component={()=><React.Fragment></React.Fragment>} exact /> */}
+          <Route path={Routes.SUPPORT} component={Support} exact />
+          <Route path={Routes.TASKLIST} component={TaskList} exact />
         </Switch>
       </BrowserRouter>
     </AppContainer>

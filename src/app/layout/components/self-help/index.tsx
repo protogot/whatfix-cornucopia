@@ -2,9 +2,10 @@ import React from "react";
 import { GridContainer, GridItem } from "layout/common/Grid/GridContainer";
 
 import "./index.scss";
-import Body from "layout/common/Body/Body";
 import BackButton from "layout/common/BackButton";
 import FlowListItem from "./FlowListItem";
+import { CALLWINDOW } from "../../../helpers/GWTConnection";
+
 
 type Props = {
   history?: any;
@@ -29,7 +30,8 @@ class SelfHelp extends React.Component<Props, State> {
   }
 
   public componentDidMount = () => {
-    (window as any)["wfxCornucopiaActions"].getAllSHContent(this.shContentCallback);
+    CALLWINDOW("getAllSHContent",this.shContentCallback);
+    // (window as any)["wfxCornucopiaActions"].getAllSHContent(this.shContentCallback);
   }
 
 
@@ -39,9 +41,12 @@ class SelfHelp extends React.Component<Props, State> {
       allContent.map((content) => {
         if (content.type === "flow") {
           return (
-            <FlowListItem
-              flowItem={content}
-            />
+            <GridContainer className="sh-item">
+              <FlowListItem
+                styleClass="sub-sh-item"
+                flowItem={content}
+              />
+            </GridContainer>
           );
         }
       })
@@ -53,14 +58,17 @@ class SelfHelp extends React.Component<Props, State> {
       <GridContainer className="page-cornucopia-self-help">
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
         <BackButton history={this.props.history} />
-        <Body>
-          {/* <GridItem className="dummy-div" xs={12}>
+        <GridContainer className="sh-items-list">
+          {this.getFlowsToDisplay()}
+        </GridContainer>
+        {/* <Body>
+          <GridItem className="dummy-div" xs={12}>
             Page - SelfHelp
-          </GridItem> */}
+          </GridItem>
           <GridItem xs={12}>
             {this.getFlowsToDisplay()}
           </GridItem>
-        </Body>
+        </Body> */}
       </GridContainer>
     );
   }

@@ -1,4 +1,21 @@
 .page-cornucopia-self-help{
   width: 100%;
   height: 100%;
+  display: block !important;
+  .sh-items-list{
+    border-top: 1px solid #ddd;
+    .sh-item{
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      .sub-sh-item.right{
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+    .sh-item:hover{
+      background: #eeeeee78;
+      box-shadow: inset 0 0 10px #eee;
+    }
+  }
 }

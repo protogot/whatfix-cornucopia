@@ -5,7 +5,7 @@ import "./index.scss";
 import Body from "layout/common/Body/Body";
 import BackButton from "layout/common/BackButton";
 import { CALLWINDOW, UPDATEWINDOW } from "./../../../helpers/GWTConnection";
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, Chip } from "@material-ui/core";
 
 type Props = {
   history?: any;
@@ -33,6 +33,10 @@ class TaskList extends React.Component<Props, State> {
     CALLWINDOW("fetchTasksList");
   }
 
+  public handleTaskStart(flowId: string) {
+    CALLWINDOW("runTasks", flowId);
+  }
+
   public render() {
     console.log("Task Lists", this.state.taskLists);
     const currentTasks =
@@ -47,7 +51,15 @@ class TaskList extends React.Component<Props, State> {
                 const isCurrentTaskCompleted =
                   currentTasks.completed.indexOf(flow.flow_id) > -1;
                 return (
-                  <GridContainer className="task-item">
+                  <GridContainer
+                    className={
+                      "task-item" + (isCurrentTaskCompleted ? " completed" : "")
+                    }
+                    title={
+                      isCurrentTaskCompleted ? "Task Completed" : "Pending Task"
+                    }
+                    onClick={() => this.handleTaskStart(flow.flow_id)}
+                  >
                     <GridItem xs={1} className="sub-task-item left">
                       {isCurrentTaskCompleted ? (
                         <i className="icon-icon-check completed"></i>
@@ -56,7 +68,10 @@ class TaskList extends React.Component<Props, State> {
                       )}
                     </GridItem>
                     <GridItem xs={11} className="sub-task-item right">
-                      {flow.title}
+                      <GridItem className="content-name">{flow.title}</GridItem>
+                      <GridItem className="content-type-wrapper">
+                        <Chip label="Flow" className="content-type" />
+                      </GridItem>
                     </GridItem>
                   </GridContainer>
                 );

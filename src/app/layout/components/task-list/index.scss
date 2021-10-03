@@ -8,9 +8,18 @@
       padding: 15px;
       border-bottom: 1px solid #eee;
       cursor: pointer;
+      i.completed::before{
+        color: green;
+      }
       .sub-task-item.right{
         font-size: 14px;
         font-weight: 600;
+        .content-name{
+          float: left;
+        }
+        .content-type-wrapper{
+          float: right;
+        }
       }
     }
     .task-item:hover{

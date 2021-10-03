@@ -62,6 +62,7 @@ class Landing extends React.Component<Props, State> {
     this.state = {
       tabs: [...defaultTabsConfig],
     };
+    (window as any).localHistory = this.props.history;
   }
 
   public handleTabRedirect(tabInfo: Tab) {

@@ -4,23 +4,88 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./index.scss";
 import { GridContainer, GridItem } from "../Grid/GridContainer";
+import { CALLWINDOW, UPDATEWINDOW } from "../../../helpers/GWTConnection";
+import Routes from "../../../routes/Routes.json";
+import { createBrowserHistory } from 'history';
 
-type Props = {};
-type State = {};
+type Props = {
+  history?:any,
+};
+type State = {
+  allContent: any[],
+};
+type SearchItem = {
+  flowId: String,
+  type: String,
+  title: String,
+}
 
 class Search extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      allContent: []
+    };
+  }
+
+  public updateFlows = (result: any, type: String) => {
+    let allContent: any[] = result;
+    let temp: any[] = [];
+    allContent.forEach((content: any) => {
+      if (content.type === "flow") {
+        temp.push({
+          flowId: content.flow_id,
+          type: type,
+          title: content.title,
+        });
+      }
+    });
+
+    let newContent = this.state.allContent.concat(temp);
+    this.setState({
+      allContent: newContent
+    })
+  }
+
+  public componentDidMount = () => {
+
+    CALLWINDOW("getAllSHContent", (result: any) => {
+      this.updateFlows(result, "sh");
+    });
+
+    UPDATEWINDOW("fetchTasksListCallback", (response: any) => {
+      let result = response && response.tasker_data && response.tasker_data.flows;
+      this.updateFlows(result, "tl");
+    });
+    CALLWINDOW("fetchTasksList");
+
+    // console.log("#WFX search comp -> ", shContent, tlContent);
+    //filter new ds
+    //onclick -> redirect, start-content
+  }
+
+  public handleChange = (event: any, value:SearchItem) => {
+ 
+    (window as any).localHistory.location.state={
+      flowId:value.flowId
+    };
+
+    if(value.type==="sh"){  
+      (window as any).localHistory.push(Routes.SELF_HELP);
+    }else{
+      (window as any).localHistory.push(Routes.TASKLIST);
+    }
+    
   }
 
   public render() {
+    console.log("#WFX search comp -> ", this.state.allContent);
     return (
       <GridContainer className="page-search">
         <GridItem xs={8}>
           <Autocomplete
             className="cornucopia-search"
-            options={top100Films}
+            options={this.state.allContent}
             getOptionLabel={(option) => option.title}
             renderInput={(params) => (
               <TextField
@@ -29,6 +94,7 @@ class Search extends React.Component<Props, State> {
                 variant="outlined"
               />
             )}
+            onChange={this.handleChange}
           />
         </GridItem>
       </GridContainer>

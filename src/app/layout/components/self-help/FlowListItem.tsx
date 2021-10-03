@@ -5,6 +5,7 @@ import React from "react";
 type FlowItemProps = {
     flowItem: any;
     styleClass?: string;
+    runFlow?:Boolean;
 }
 
 type FlowItemState = {
@@ -91,6 +92,10 @@ export default class FlowListItem extends React.Component<FlowItemProps, FlowIte
     }
 
     public clickHandler = (event: any) => {
+        this.runFlow();
+    }
+
+    public runFlow = () => {
         this.attachStepEventListeners();
         CALLWINDOW("attachStepEventHandler");
         CALLWINDOW("runFlow", this.props.flowItem.flow_id);

@@ -2,23 +2,23 @@ declare const window : any;
 
 function CALLWINDOW(type: string, ...params : any) {
   if (
-    window.wfxActions &&
-    window.wfxActions[type] &&
-    typeof window.wfxActions[type] == "function"
+    window.wfxCornucopiaActions &&
+    window.wfxCornucopiaActions[type] &&
+    typeof window.wfxCornucopiaActions[type] == "function"
   ) {
-    return window.wfxActions[type](...params);
+    return window.wfxCornucopiaActions[type](...params);
   } else {
-    return window.wfxActions[type];
+    return window.wfxCornucopiaActions[type];
   }
 }
 
 function UPDATEWINDOW (type: string, context: any) {
-  if (window.wfxActions === undefined) {
-    window.wfxActions = {};
+  if (window.wfxCornucopiaActions === undefined) {
+    window.wfxCornucopiaActions = {};
   }
 
   if (type) {
-    window.wfxActions[type] = context;
+    window.wfxCornucopiaActions[type] = context;
   }
 }
 

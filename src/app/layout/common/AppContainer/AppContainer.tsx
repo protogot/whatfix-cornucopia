@@ -1,4 +1,7 @@
 import React from "react";
+import Body from "../Body/Body";
+import Header from "../Header";
+import Search from "../Search";
 
 import "./AppContainer.scss";
 
@@ -12,6 +15,14 @@ export default class AppContainer extends React.Component<Props, State> {
   }
 
   public render() {
-    return <div className="cornucopia-web-app-v1">{this.props.children}</div>;
+    return (
+      <div className="cornucopia-web-app-v1">
+        <Header />
+        <Search/>
+        <Body>
+          {this.props.children}
+        </Body>
+      </div>
+    );
   }
 }

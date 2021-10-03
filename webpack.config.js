@@ -27,7 +27,7 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
-          test: /\.scss$/,
+          test: /\.(scss|less|css)$/,
           use: [
             "style-loader",
             MiniCssExtractPlugin.loader,
@@ -51,15 +51,6 @@ module.exports = (env, options) => {
               },
             },
           ],
-        },
-        {
-          test: /\.(ttf|eot|woff|woff2)$/,
-          use: {
-            loader: "file-loader",
-            options: {
-              name: "fonts/[name].[ext]",
-            },
-          },
         },
         {
           test: /\.(jpe?g|png|gif|svg|ico)$/i,
@@ -94,6 +85,16 @@ module.exports = (env, options) => {
           test: /\.js$/,
           use: ["source-map-loader"],
           enforce: "pre"
+        },
+        {
+          test: /\.(ttf|eot|woff|woff2)$/,
+          use: {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
         },
       ],
     },

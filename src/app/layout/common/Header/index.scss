@@ -1,0 +1,18 @@
+.page-header{
+  padding: 15px 30px;
+  border-bottom: 1px solid #ddd;
+  background: #fafafa;
+  height: 50px;
+  box-shadow: 0 0 10px #eee;
+  .sub-header{
+    display: flex;
+    align-items: center;
+    img{
+      width: 80px;
+      cursor: pointer;
+    }
+  }
+  .sub-header.right{
+    justify-content: flex-end;
+  }
+}

@@ -1,4 +1,6 @@
 import React from "react";
+import "./index.scss";
+
 import { GridItem } from "../Grid/GridContainer";
 import Routes from "./../../../routes/Routes.json";
 

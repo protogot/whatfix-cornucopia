@@ -4,29 +4,65 @@ import { GridContainer, GridItem } from "layout/common/Grid/GridContainer";
 import "./index.scss";
 import Body from "layout/common/Body/Body";
 import BackButton from "layout/common/BackButton";
+import { CALLWINDOW, UPDATEWINDOW } from "./../../../helpers/GWTConnection";
+import { Checkbox } from "@material-ui/core";
 
 type Props = {
   history?: any;
 };
 
-type State = {};
+type State = {
+  taskLists: any;
+};
 
 class TaskList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      taskLists: null,
+    };
   }
 
-  render() {
+  public componentDidMount() {
+    const _this = this;
+    UPDATEWINDOW("fetchTasksListCallback", (response: any) => {
+      _this.setState({
+        taskLists: response,
+      });
+    });
+    CALLWINDOW("fetchTasksList");
+  }
+
+  public render() {
+    console.log("Task Lists", this.state.taskLists);
+    const currentTasks =
+      this.state.taskLists && this.state.taskLists.tasker_data;
     return (
       <GridContainer className="page-cornucopia-task-list">
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
         <BackButton history={this.props.history} />
-        <Body>
-          <GridItem className="dummy-div" xs={12}>
-            Page - TaskList
-          </GridItem>
-        </Body>
+        <GridContainer className="task-items-list">
+          {currentTasks && currentTasks.flows && currentTasks.flows.length
+            ? currentTasks.flows.map((flow: any) => {
+                const isCurrentTaskCompleted =
+                  currentTasks.completed.indexOf(flow.flow_id) > -1;
+                return (
+                  <GridContainer className="task-item">
+                    <GridItem xs={1} className="sub-task-item left">
+                      {isCurrentTaskCompleted ? (
+                        <i className="icon-icon-check completed"></i>
+                      ) : (
+                        <i className="icon-ic20-play pending"></i>
+                      )}
+                    </GridItem>
+                    <GridItem xs={11} className="sub-task-item right">
+                      {flow.title}
+                    </GridItem>
+                  </GridContainer>
+                );
+              })
+            : null}
+        </GridContainer>
       </GridContainer>
     );
   }

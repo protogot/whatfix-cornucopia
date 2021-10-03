@@ -23,9 +23,10 @@ class Support extends React.Component<Props, State> {
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
         <BackButton history={this.props.history} />
         <Body>
-          <GridItem className="dummy-div" xs={12}>
-            Page - Support
-          </GridItem>
+          <iframe
+            id="whatfix-support-iframe"
+            src="https://support.whatfix.com/"
+          ></iframe>
         </Body>
       </GridContainer>
     );

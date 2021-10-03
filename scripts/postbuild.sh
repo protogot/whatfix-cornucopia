@@ -6,8 +6,11 @@ cssfilename=$(ls build/cornucopiareact.css | sed 's|.*/||' )
 chmod +x ../w3o-whatfix-dashboard-editor-common
 cp build/$jsfilename ../w3o-whatfix-dashboard-editor-common/war/lib/js
 
+sed -i 's#/static/media/##g' build/static/css/$cssfilename
+
 newcssname=${cssfilename/main/cornucopiareact}
 cp build/$cssfilename ../w3o-whatfix-dashboard-editor-common/war/lib/css/${newcssname}
+cp -r build/fonts/* ../w3o-whatfix-dashboard-editor-common/war/lib/css
 
 chmod +x ../w3o-whatfix-widget
 sed -i s/cornucopiareact.css/$newcssname/g ../w3o-whatfix-widget/war/cornucopia.html

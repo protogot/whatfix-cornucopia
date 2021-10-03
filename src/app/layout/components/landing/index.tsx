@@ -12,7 +12,7 @@ type Props = {
 };
 
 type State = {
-  tabs: Array<Tab>
+  tabs: Array<Tab>;
 };
 
 type Tab = {
@@ -20,46 +20,51 @@ type Tab = {
   active: boolean;
   type: TabTypes;
   label: string;
-}
+};
 
 enum TabTypes {
   chat,
   selfHelp,
   support,
-  taskList
-} 
+  taskList,
+}
 
-const defaultTabsConfig = [{
-  URL: Routes.CHAT,
-  active: false,
-  type: TabTypes.chat,
-  label: "Chat"
-},{
-  URL: Routes.SELF_HELP,
-  active: false,
-  type: TabTypes.selfHelp,
-  label: "Self Help"
-},{
-  URL: Routes.SUPPORT,
-  active: false,
-  type: TabTypes.support,
-  label: "Support"
-},{
-  URL: Routes.TASKLIST,
-  active: false,
-  type: TabTypes.taskList,
-  label: "Task List"
-}]
+const defaultTabsConfig = [
+  {
+    URL: Routes.CHAT,
+    active: false,
+    type: TabTypes.chat,
+    label: "Chat",
+  },
+  {
+    URL: Routes.SELF_HELP,
+    active: false,
+    type: TabTypes.selfHelp,
+    label: "Self Help",
+  },
+  {
+    URL: Routes.SUPPORT,
+    active: false,
+    type: TabTypes.support,
+    label: "Support",
+  },
+  {
+    URL: Routes.TASKLIST,
+    active: false,
+    type: TabTypes.taskList,
+    label: "Task List",
+  },
+];
 
 class Landing extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      tabs: [...defaultTabsConfig]
+      tabs: [...defaultTabsConfig],
     };
   }
 
-  public handleTabRedirect(tabInfo: Tab){
+  public handleTabRedirect(tabInfo: Tab) {
     this.props.history.push(tabInfo.URL);
   }
 
@@ -67,15 +72,20 @@ class Landing extends React.Component<Props, State> {
     return (
       <GridContainer className="page-cornucopia-landing">
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
-        <Body>
-          <GridContainer className="tabs-list">
-            {
-              this.state.tabs.map((tab: Tab) => (
-                <GridItem className="tab-item" xs={12} onClick={() => this.handleTabRedirect(tab)}>{tab.label}</GridItem>
-              ))
-            }
-          </GridContainer>
-        </Body>
+        <GridContainer className="tabs-list">
+          {this.state.tabs.map((tab: Tab) => (
+            <GridItem
+              className="tab-item"
+              xs={12}
+              onClick={() => this.handleTabRedirect(tab)}
+            >
+              <GridItem className="sub-tab-item left">{tab.label}</GridItem>
+              <GridItem className="sub-tab-item right">
+                <i className="icon-ic20-arrow-right" />
+              </GridItem>
+            </GridItem>
+          ))}
+        </GridContainer>
       </GridContainer>
     );
   }

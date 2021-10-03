@@ -68,6 +68,12 @@ class Landing extends React.Component<Props, State> {
     this.props.history.push(tabInfo.URL);
   }
 
+  public componentDidMount () {
+    const launcher: any = document.getElementById("launcher")
+    if(launcher) 
+      launcher.style.visibility = 'hidden'
+  }
+
   public render() {
     return (
       <GridContainer className="page-cornucopia-landing">

@@ -20,7 +20,7 @@ class SelfHelp extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     console.log("#WFX props = ", this.props);
-    let flowId = this.props.history && this.props.history.location && this.props.history.location.state && this.props.history.location.state.flowId
+    let flowId = this.props.history && this.props.history.location && this.props.history.location.state && this.props.history.location.state.flowId;
     this.state = {
       allSHContent: [],
       runFlow: flowId,
@@ -61,7 +61,6 @@ class SelfHelp extends React.Component<Props, State> {
   render() {
     return (
       <GridContainer className="page-cornucopia-self-help">
-        {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
         <BackButton history={this.props.history} />
         <GridContainer className="sh-items-list">
           {this.getFlowsToDisplay()}

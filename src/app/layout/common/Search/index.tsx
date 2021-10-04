@@ -6,7 +6,6 @@ import "./index.scss";
 import { GridContainer, GridItem } from "../Grid/GridContainer";
 import { CALLWINDOW, UPDATEWINDOW } from "../../../helpers/GWTConnection";
 import Routes from "../../../routes/Routes.json";
-import { createBrowserHistory } from 'history';
 
 type Props = {
   history?:any,
@@ -59,21 +58,23 @@ class Search extends React.Component<Props, State> {
     });
     CALLWINDOW("fetchTasksList");
 
-    // console.log("#WFX search comp -> ", shContent, tlContent);
-    //filter new ds
-    //onclick -> redirect, start-content
   }
 
   public handleChange = (event: any, value:SearchItem) => {
- 
-    (window as any).localHistory.location.state={
-      flowId:value.flowId
-    };
-
     if(value.type==="sh"){  
-      (window as any).localHistory.push(Routes.SELF_HELP);
+      (window as any).localHistory.push({
+        pathname:Routes.SELF_HELP,
+        state:{
+          flowId:value.flowId
+        }
+      });
     }else{
-      (window as any).localHistory.push(Routes.TASKLIST);
+      (window as any).localHistory.push({
+        pathname:Routes.TASKLIST,
+        state:{
+          flowId:value.flowId
+        }
+      });
     }
     
   }

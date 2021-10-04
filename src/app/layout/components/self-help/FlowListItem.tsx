@@ -5,6 +5,7 @@ import React from "react";
 type FlowItemProps = {
     flowItem: any;
     styleClass?: string;
+    runFlow?:Boolean;
 }
 
 type FlowItemState = {
@@ -20,13 +21,19 @@ export default class FlowListItem extends React.Component<FlowItemProps, FlowIte
 
     constructor(props: FlowItemProps) {
         super(props);
+        
+        let flowStarted=this.props.runFlow?true:false;
+        
         this.state = {
             stepSearchStart:false,
             currentStep:0,
             stepFound:false,
             stepMissed:false,
-            flowStarted:false,
+            flowStarted:flowStarted,
             totalSteps:0,
+        }
+        if(this.props.runFlow){
+            this.runFlow();
         }
     }
 
@@ -91,12 +98,17 @@ export default class FlowListItem extends React.Component<FlowItemProps, FlowIte
     }
 
     public clickHandler = (event: any) => {
+        this.setState({
+            flowStarted:true,
+        },()=>{
+            this.runFlow();
+        })
+    }
+
+    public runFlow = () => {
         this.attachStepEventListeners();
         CALLWINDOW("attachStepEventHandler");
         CALLWINDOW("runFlow", this.props.flowItem.flow_id);
-        this.setState({
-            flowStarted:true,
-        })
     }
 
     public getSlideShow = () => {

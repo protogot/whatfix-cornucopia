@@ -13,13 +13,17 @@ type Props = {
 
 type State = {
   allSHContent: any;
+  runFlow?: String;
 };
 
 class SelfHelp extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    console.log("#WFX props = ", this.props);
+    let flowId = this.props.history && this.props.history.location && this.props.history.location.state && this.props.history.location.state.flowId;
     this.state = {
-      allSHContent: []
+      allSHContent: [],
+      runFlow: flowId,
     };
   }
 
@@ -30,8 +34,7 @@ class SelfHelp extends React.Component<Props, State> {
   }
 
   public componentDidMount = () => {
-    CALLWINDOW("getAllSHContent",this.shContentCallback);
-    // (window as any)["wfxCornucopiaActions"].getAllSHContent(this.shContentCallback);
+    CALLWINDOW("getAllSHContent", this.shContentCallback);
   }
 
 
@@ -40,11 +43,13 @@ class SelfHelp extends React.Component<Props, State> {
     return (
       allContent.map((content) => {
         if (content.type === "flow") {
+          let shouldRunFlow = content.flow_id === this.state.runFlow
           return (
             <GridContainer className="sh-item">
               <FlowListItem
                 styleClass="sub-sh-item"
                 flowItem={content}
+                runFlow={shouldRunFlow}
               />
             </GridContainer>
           );
@@ -56,19 +61,10 @@ class SelfHelp extends React.Component<Props, State> {
   render() {
     return (
       <GridContainer className="page-cornucopia-self-help">
-        {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
         <BackButton history={this.props.history} />
         <GridContainer className="sh-items-list">
           {this.getFlowsToDisplay()}
         </GridContainer>
-        {/* <Body>
-          <GridItem className="dummy-div" xs={12}>
-            Page - SelfHelp
-          </GridItem>
-          <GridItem xs={12}>
-            {this.getFlowsToDisplay()}
-          </GridItem>
-        </Body> */}
       </GridContainer>
     );
   }

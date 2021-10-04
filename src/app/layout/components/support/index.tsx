@@ -59,12 +59,10 @@ class Support extends React.Component<Props, State> {
       <GridContainer className="page-cornucopia-support">
         {/* SEARCH WILL COME HERE - COMMON - Add all the elements inside <Body>...</Body> */}
         <BackButton history={this.props.history} />
-        <Body>
-          <iframe
-            id="whatfix-support-iframe"
-            src="https://support.whatfix.com/"
-          ></iframe>
-        </Body>
+        <iframe
+          id="whatfix-support-iframe"
+          src="https://support.whatfix.com/"
+        ></iframe>
       </GridContainer>
     );
   }

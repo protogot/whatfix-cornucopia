@@ -69,9 +69,9 @@ class Landing extends React.Component<Props, State> {
   }
 
   public componentDidMount () {
-    const launcher: any = document.getElementById("launcher")
-    if(launcher) 
-      launcher.style.visibility = 'hidden'
+    // const launcher: any = document.getElementById("launcher")
+    // if(launcher) 
+    //   launcher.style.visibility = 'hidden'
   }
 
   public render() {

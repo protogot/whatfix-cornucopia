@@ -2,3 +2,14 @@
   width: 100%;
   height: 100%;
 }
+iframe#webWidget {
+  width: 100% !important;
+  height: calc(100% - 200px) !important;
+  .sc-yb1swt-0.hSxrMH{
+    padding: 0 !important;
+  }
+}
+
+.hidden{
+  display: none !important;
+}

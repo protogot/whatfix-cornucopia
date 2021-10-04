@@ -3,6 +3,7 @@ import React from "react";
 import AppContainer from "./../layout/common/AppContainer/AppContainer";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 
 import Routes from "./Routes.json";
 import Landing from "layout/components/landing";
@@ -12,6 +13,10 @@ import Support from "layout/components/support";
 import TaskList from "layout/components/task-list";
 
 export default function Router() {
+  const currentHistory = createBrowserHistory();
+  setTimeout(() => {
+    currentHistory.push("/");
+  }, 1000);
   return (
     <AppContainer>
       <BrowserRouter>

@@ -20,6 +20,11 @@ class Chat extends React.Component<Props, State> {
   componentDidMount() {
     const launcher: any = document.getElementById("launcher")
     launcher.contentDocument.getElementsByTagName("button")[0].click()
+    document.querySelector("iframe#webWidget")?.classList.remove("hidden");
+  }
+
+  componentWillUnmount(){
+    document.querySelector("iframe#webWidget")?.classList.add("hidden");
   }
 
   onClickBack() {

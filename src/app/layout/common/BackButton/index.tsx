@@ -2,8 +2,11 @@ import React from "react";
 import { GridItem } from "../Grid/GridContainer";
 import Routes from "./../../../routes/Routes.json";
 
-export default function BackButton({ history } : any){
+export default function BackButton({ history, onClick } : any){
   function handleBack(){
+    if(typeof onClick === 'function') {
+      onClick();
+    }
     if(history && history.push){
       history.push(Routes.LANDING);
     } else {

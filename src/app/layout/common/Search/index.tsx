@@ -48,13 +48,15 @@ class Search extends React.Component<Props, State> {
 
   public componentDidMount = () => {
 
-    CALLWINDOW("getAllSHContent", (result: any) => {
-      this.updateFlows(result, "sh");
-    });
+    const _this=this;
 
+    CALLWINDOW("getAllSHContent", (result: any) => {
+      _this.updateFlows(result, "sh");
+    });
+    
     UPDATEWINDOW("fetchTasksListCallback", (response: any) => {
       let result = response && response.tasker_data && response.tasker_data.flows;
-      this.updateFlows(result, "tl");
+      _this.updateFlows(result, "tl");
     });
     CALLWINDOW("fetchTasksList");
 

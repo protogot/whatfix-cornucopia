@@ -19,7 +19,6 @@ type State = {
 class SelfHelp extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    console.log("#WFX props = ", this.props);
     let flowId = this.props.history && this.props.history.location && this.props.history.location.state && this.props.history.location.state.flowId;
     this.state = {
       allSHContent: [],

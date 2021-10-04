@@ -80,7 +80,6 @@ class Search extends React.Component<Props, State> {
   }
 
   public render() {
-    console.log("#WFX search comp -> ", this.state.allContent);
     return (
       <GridContainer className="page-search">
         <GridItem xs={8}>
@@ -95,6 +94,26 @@ class Search extends React.Component<Props, State> {
                 variant="outlined"
               />
             )}
+            renderOption={(option)=>{
+              return(
+                <GridContainer direction="row">
+                  <GridItem xs={8}>
+                    <h4>{option.title}</h4>
+                  </GridItem>
+                  <GridItem xs={4}>
+                    <span style={{
+                      fontStyle:"italic",
+                      color:"gray",
+                      alignSelf:"center",
+                      fontSize:"1em",
+                      display: "block",
+                      marginBlockStart: "1.33em",
+                      marginBlockEnd: "1.33em",
+                    }}>{option.type==="sh"?"self-help":"task-list"}</span>
+                  </GridItem>
+                </GridContainer>
+              );
+            }}
             onChange={this.handleChange}
           />
         </GridItem>

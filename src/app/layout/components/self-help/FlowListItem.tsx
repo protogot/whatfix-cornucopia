@@ -1,5 +1,6 @@
 import { CALLWINDOW, UPDATEWINDOW } from "../../../helpers/GWTConnection";
 import { GridContainer, GridItem } from "layout/common/Grid/GridContainer";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import React from "react";
 
 type FlowItemProps = {
@@ -78,16 +79,20 @@ export default class FlowListItem extends React.Component<FlowItemProps, FlowIte
 
     public getSearchingStatus = () => {
         
-        let status="";
+        let status:any;
         
         let isSearching = this.state.stepSearchStart && !this.state.stepFound;
         
         if(isSearching){
-            status = `Searching Step ${this.state.currentStep} of ${this.state.totalSteps}`
+            status = (
+                <>
+                    {`Searching Step ${this.state.currentStep} of ${this.state.totalSteps}`}<CircularProgress size="1em" style={{marginInline:"5px"}}/>
+                </>
+            )
         }else if(this.state.stepFound){
-            status = `Showing Step ${this.state.currentStep} of ${this.state.totalSteps}`
+            status = (<>{`Showing Step ${this.state.currentStep} of ${this.state.totalSteps}`}</>)
         }else if(this.state.stepMissed){
-            status = `Step ${this.state.currentStep} not found`
+            status = (<>{`Step ${this.state.currentStep} not found`}</>)
         }
 
         return this.state.flowStarted && (
@@ -154,12 +159,16 @@ export default class FlowListItem extends React.Component<FlowItemProps, FlowIte
                     <GridItem
                         className={this.props.styleClass + " right"}
                         onClick={this.clickHandler}
-                        xs={8}
+                        xs={7}
                     >
                         {this.props.flowItem.title}
                     </GridItem>
                     <GridItem
-                        xs={4}
+                        xs={5}
+                        style={{
+                            display:"flex-inline",
+                            fontSize:"14px",
+                        }}
                     >
                         {this.getSearchingStatus()}
                     </GridItem>
